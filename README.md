@@ -20,6 +20,12 @@ Open `http://localhost:3000`. Python runs locally in a time-limited Web Worker u
 
 The app links to each source paper instead of republishing complete PDFs. Commercial mock papers are not included.
 
+## Production rendering
+
+The home page renders on each request because `proxy.ts` creates a fresh CSP nonce.
+Keep this route dynamic so Next.js applies that nonce to its startup scripts; statically
+rendering it blocks hydration and leaves navigation, editing and execution unresponsive.
+
 ## Checks
 
 ```bash
